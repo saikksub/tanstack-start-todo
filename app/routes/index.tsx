@@ -25,16 +25,24 @@ const Home = () => {
   const router = useRouter()
   const state = Route.useLoaderData()
 
-  const handleClick = () => {
-    updateCount({ data: 1 }).then(() => {
+  const handleClick = (v: number) => {
+    updateCount({ data: v }).then(() => {
       router.invalidate()
     })
   }
 
   return (
-    <button type="button" onClick={handleClick}>
-      Add 1 to {state}
-    </button>
+    <div>
+      <h1>{state}</h1>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <button type="button" onClick={() => handleClick(1)}>
+          Increment + 1
+        </button>
+        <button type="button" onClick={() => handleClick(-1)}>
+          Decrement - 1
+        </button>
+      </div>
+    </div>
   )
 }
 
